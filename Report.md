@@ -4,12 +4,21 @@
 
 ## Multi-Agent Deep Deterministic Policy Gradient (MADDPG)
 
+
+
 ### MADDPG paper
 
 R. Lowe et al., 2017. *Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments* (https://arxiv.org/abs/1706.02275)
 
 
 ### The basics of MADDPG
+A brief introduction of the Deep Deterministic Policy Gradient (DDPG) can be found in my previous project (https://github.com/sliao-mi-luku/DeepRL-continuous-control-reachers-udacity-drlnd-p2). The Multi-Agent Deep Deterministic Policy Gradient (MADDPG) extends the basic concepts of DDPG and can be better applied in an environment where there are mutiple agents competing or cooperating with each other.
+
+In MADDPG, each agent has its own policy (called the actor), and uses its own policy to interact with the environment, without considering the policies of other agents. In addition to the actor, each agent also has its own neural network (call the critic) to assist it to evaluate and improve its own policy. We can view the critic as the **personal coach** of the agent. The coach observes everything in the envirnment: the information perceived by all agents, and the actions taken by all agents. The coach (critic) then uses all the information to evaluate the action-value of the policy of the agent which it's responsible for. By assigning every agent with a unique critic (coach), we can generalize the application of MADDPG in both competitive or coorperative environment because the critics (coaches) work independently of each other and is only dedicated to the success of the agent it's coaching.
+
+For each agent, the actor and critic are implemented as 2 deep neural networks consisting of some fully connected layers.
+
+In this project there're 2 agents playing tennis with each other, and the goal is to hit the ball over the net as many time as possible. This is an collaborative environment.
 
 
 ### Neural network architectures
