@@ -15,13 +15,13 @@ A brief introduction of the Deep Deterministic Policy Gradient (DDPG) can be fou
 
 **The actor**
 
-Each agent has its own policy (called the actor) to interact with the environment. The policy only considers the states that can be observed by the agent. The actor can not access to the states that are observed by other agents.
+Each agent has its own policy (called the actor) to interact with the environment. The policy only considers the states that can be observed by the agent. The actor can not access to the states observed by other agents.
 
 **The critic**
 
-In addition to the actor, each agent also has its own neural network (call the critic) to assist it to evaluate and improve its own policy. We can view the critic as the **personal coach** of the agent. The coach (the critic) observes everything in the envirnment: the information perceived by all agents, and the actions taken by all agents. The coach (the critic) then uses all the information it has to evaluate the action-value of the policy of the agent which it's responsible for. By assigning every agent with a unique critic (coach), we can generalize the application of MADDPG in both competitive or coorperative environment because the critics (coaches) work independently of each other and is only dedicated to the success of the agent it's coaching.
+In addition to the actor, each agent also has its own critic to evaluate and improve its policy. We can view the critic as the **personal coach** of the agent. The critic can see everything in the environment: not only the information observed by all agents, but also the actions taken by all agents. The critic then uses all the information it has to evaluate the action-value of the policy of the agent which it's responsible for. By assigning every agent with a unique critic, we can generalize the application of MADDPG in both competitive or coorperative environment because the critics work independently of each other and is only dedicated to the success of the agent it's coaching.
 
-For each agent, the actor and critic are implemented as 2 deep neural networks consisting of some fully connected layers. Similar to the DQN implementation, the actor has a *local* and *target* networks (and so does the critic). The target network is soft-updated at the end of each batch of training.
+For each agent, the actor and critic are deep neural networks consisting of some fully connected layers. Similar to the DQN implementation, the actor has a *local* and *target* networks (and so does the critic). The target network is soft-updated at the end of each round of batch-training.
 
 In this project there're 2 agents playing tennis with each other, and the goal is to hit the ball over the net as many times as possible.
 
@@ -30,24 +30,23 @@ In this project there're 2 agents playing tennis with each other, and the goal i
 
 **The actor**
 
-The actor network learns the policy of the agent. In my implementation, each agent has its own actor network. The input to the actor network
-is the state vector which is only observed by the agent (size = 24), and the output will be the action taken by the agent (size = 2). The action 
-takes continuous real values.
+The actor network learns the policy of the agent. Each agent has its own actor network. The input to the actor network
+is the state vector which is only observed by the agent (size = 24), and the output will be the action taken by the agent (size = 2). Each component of the action 
+vector takes a continuous real value in the range [-1, 1].
 
-The default architectures of the actor (both local and target) network consist of:
+The default architecture of the actor (both local and target) network consists of:
 
 - **input layer**: a fully connected layer with input size = 24, output size = 400, activation function = ReLU
 - **hidden layer**: a fully connected layer with input size = 400, output size = 300, activation function = ReLU
 - **output layer**: a fully connected layer with input size = 300, output size = 2, activation function = tanh
 
-In this environment, the values of the action is assumed to be in the range [-1, 1]
 
 **The critic**
 
-The critic network learns how good/bad the actor's policy is. In the implementation, each agent has its own critic network. The critic network takes
+The critic network learns how good/bad the policy is. Each agent has its own critic network. The critic network takes
 the **states observed by both agents** and the **actions taken by both agents** as the inputs, and outputs an action-value **q(s, a)**
 
-The default architectures of the critic (both local and target) network consist of:
+The default architecture of the critic (both local and target) network consists of:
 
 - **input layer**: a fully connected layer with input size = 48, output size = 400, activation function = ReLU
 - **hidden layer**: a fully connected layer with input size = 404, output size = 300, activation function = ReLU
@@ -60,9 +59,9 @@ More details can be found in the file `networkModels.py`
 
 
 ### The noise process
-To motivate exploration, once the policy (the actor) determines the values of the action, the agent will add some noise to it and use the new values to interact with the environment. Larger noise means the agent will explore farther away from its current policy (exploration), and smaller noise means the agent will stay closer to its cuurent policy (exploitation).
+To motivate exploration, once the actor determines the action vector, the agent will add some noise to it and use the new vector as the action to interact with the environment. Adding a larger noise means the agent will explore farther away from its current policy (exploration), and adding a smaller noise means the agent will stay closer to its cuurent policy (exploitation).
 
-In the **DDPG paper**, the authors modeled the noise by the **Ornstein-Uhlenbeck Process** (OU noise).
+Similar to the **DDPG paper**, I modeled the noise by the **Ornstein-Uhlenbeck Process** (OU noise).
 
 `OUnoise(t) = OUnoise(t-1) + ou_theta*(asymptotic_mean - OUnoise(t-1)) + ou_sigma*Gaussian_diffusion`
 
@@ -73,9 +72,9 @@ The OU noise has 2 important parameters:
 `ou_sigma` controls the magnitude of the diffusion term (default = 0.20)
 
 
-As seen in the equation, the direction of the drift term is always pointing toward the asymptotic mean (which is set to 0) of the noise to avoid divergence.  
+As seen in the equation, the direction of the drift term is always pointing toward the asymptotic mean (which is set to be 0) of the noise to avoid divergence.  
 
-To motivate exploration in the beginning of the training and exploitation in the end. I multiple the noise with a scaling factor `ou_scale` which is exponentially decaying. In the first episode, `ou_scale` is 1.0. After each episode, `ou_scale` is mutiplied with a constant `ou_decay` = 0.9995.
+To motivate exploration in the beginning of the training and motivate exploitation as the training goes on, I multiplied the noise with a scaling factor `ou_scale` which decays exponentially. In the first episode, `ou_scale` is 1.0. After each episode, `ou_scale` is multiplied by a constant `ou_decay` (0.9995).
 
 For more details of the Ornstein-Uhlenbeck Process, please refer to the textbook *Stochastic Methods, a handbook for the natural and social sciences* 
 by Crispin Gardiner (https://www.springer.com/gp/book/9783540707127).
