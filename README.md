@@ -115,3 +115,14 @@ After training, the weights and biases of the actor and critic networks will be 
  `checkpoint_actor_1.pth` and `checkpoint_critic_1.pth` for Agent 1
 #### 8. (Optional) Run `Box 4` to load the saved weights into the agents and watch the performance
 #### 9. Before closing, simply use the command `env.close()` to close the environment
+
+
+## References in this project
+1. R. Lowe et al., 2017. *Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments*\
+https://arxiv.org/abs/1706.02275
+2. T. P. Lillicrap et al., 2016. *Continuous control with deep reinforcement learning*\
+https://arxiv.org/abs/1509.02971
+3. Udacity's GitHub repository **ddpg-pendulum**\
+https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-pendulum
+4. Udacity's drlnd jupyter notebook template of **Project: Collaboration and Competition**
+5. Udacity's drlnd MADDPG-Lab (maddpg.py)
