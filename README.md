@@ -86,7 +86,7 @@ Please follow the steps below to download all the necessary files and dependenci
 
 ## How to run the code
 
-Please follow the steps below to train the agent or to watch a pre-trained agent perform the task.
+Please follow the steps below to train the agents or to watch a pre-trained agents perform the task.
 
 #### 1. Run the *Anaconda Prompt* and navigate to the folder `p3_collab-compet`
 ``` cmd
