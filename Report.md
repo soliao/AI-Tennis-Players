@@ -159,7 +159,7 @@ Please refer to the **Experiment details** in the paper for more information.
 
 ## Training result
 
-With the parameters above, the agent solved the task after 841 episodes, i.e., the average (over agents) score from episode #842 to #941 reaches above +0.5 points.
+With the parameters above, the agent solved the task after 841 episodes, i.e., the average scores from episode #842 to #941 reaches above +0.5 points.
 
 [![p3-scores.png](https://i.postimg.cc/HLwxpBw6/p3-scores.png)](https://postimg.cc/rdpcjGY4)\
 **(figure)** *Average score of each episode*
