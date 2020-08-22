@@ -86,7 +86,7 @@ Please follow the steps below to download all the necessary files and dependenci
 
 ## How to run the code
 
-Please follow the steps below to train the agents or to watch a pre-trained agents perform the task.
+Please follow the steps below to train the agents or to watch pre-trained agents perform the task.
 
 #### 1. Run the *Anaconda Prompt* and navigate to the folder `p3_collab-compet`
 ``` cmd
@@ -107,8 +107,8 @@ Paste the path to `Tennis.exe` after **"file_name = "**
 for example, `file_name = "./Tennis_Windows_x86_64/Tennis.exe"`
 #### 6. Run `Box 2` to set the hyperparameters
 For information of the hyperparameters, please refer to `Report.md`
-#### 7. Run `Box 3` to start training the agent
-A figure of the noise simulation will be displayed first, which can be used for tuning the parameters of the noise process. Please note that this simulation is independent of the noise process used in the ddpg traning, i.e., the exact noise values generated during training will be different from the values shown in the figure.
+#### 7. Run `Box 3` to start training the agents
+A figure of the noise simulation will be displayed first, which can be used for tuning the parameters of the noise process. Please note that this simulation is independent of the noise process used in the maddpg traning, i.e., the exact noise values generated during training will be different from the values shown in the figure.
 
 After training, the weights and biases of the actor and critic networks will be saved with the file names:\
  `checkpoint_actor_0.pth` and `checkpoint_critic_0.pth` for Agent 0, and\
