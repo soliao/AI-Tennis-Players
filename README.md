@@ -1,14 +1,13 @@
 # DeepRL-multiple-agents-tennis-udacity-drlnd-p3
 
 
-# This is still an manuscript!!
 
 - Reinforcement learning environment by Unity ML-Agents
 - This repository corresponds to **Project #3** of Udacity's Deep Reinforcement Learning Nanodegree (drlnd)\
   https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893
 - Solving the multiple-agent problem using the multi-agent actor-critic method
 
-In this project, I used the multi-agent deep deterministic policy gradient (MADDPG) algorithm to train 2 agents to hit volleys across each other. The goal is to hit the ball to the other side as many times as possible, while avoiding hitting the ball to the ground or out of bounds.
+In this project, I used the multi-agent deep deterministic policy gradient (MADDPG) algorithm to train 2 agents to play tennis with each other. The goal is to hit the ball to the other side as many times as possible, while avoiding hitting the ball to the ground or out of bounds.
 
 The environment is originally from Unity Machine Learning Agents (Unity ML-Agents). For more details and other environments, please visit:\
 https://github.com/Unity-Technologies/ml-agents
@@ -33,10 +32,10 @@ Each agent can observe the state with the dimension = 24. There are 48 state dim
 The action has 4 dimensions (2 for each agent). The action space is continuous, representing the horizontal and vertical movement of the player.
 
 - **Rewards**\
-If the agent hits the ball over the net, a reward of +0.1 if provided. If the ball hits the ground of out bounds, a reward of -0.01 is provided.
+If the agent hits the ball over the net, a reward of +0.1 is provided. If the ball hits the ground or out of bounds, a reward of -0.01 is provided.
 
 - **Goal**\
-When an episode ends, we use the maximum of the scores of agent 0 and agent 1 as the **episode score**. The environment is considered solved when the **average of the episode score over 100 consecutive episodes** reaches above **+0.5**. This is equivalent to that each agent hits about 5 consecutive volleys to the other agent.
+When an episode ends, we use the maximum of the scores of agent 0 and agent 1 as the score of the episode. The environment is considered solved when the **average of the scores of 100 consecutive episodes** reaches above **+0.5**.
 
 
 ## Getting started
