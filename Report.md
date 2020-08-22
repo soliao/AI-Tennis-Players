@@ -1,6 +1,5 @@
 # Report.md
 
-# This is still a manuscript!!
 
 ## Multi-Agent Deep Deterministic Policy Gradient (MADDPG)
 
