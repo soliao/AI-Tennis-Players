@@ -13,7 +13,13 @@ R. Lowe et al., 2017. *Multi-Agent Actor-Critic for Mixed Cooperative-Competitiv
 ### The basics of MADDPG
 A brief introduction of the Deep Deterministic Policy Gradient (DDPG) can be found in my previous project (https://github.com/sliao-mi-luku/DeepRL-continuous-control-reachers-udacity-drlnd-p2). The Multi-Agent Deep Deterministic Policy Gradient (MADDPG) extends the basic concepts of DDPG and can be better applied in an environment where there are mutiple agents competing or cooperating with each other.
 
-In MADDPG, each agent has its own policy (called the actor), and uses its own policy to interact with the environment, without considering the policies of other agents. In addition to the actor, each agent also has its own neural network (call the critic) to assist it to evaluate and improve its own policy. We can view the critic as the **personal coach** of the agent. The coach (the critic) observes everything in the envirnment: the information perceived by all agents, and the actions taken by all agents. The coach (the critic) then uses all the information it has to evaluate the action-value of the policy of the agent which it's responsible for. By assigning every agent with a unique critic (coach), we can generalize the application of MADDPG in both competitive or coorperative environment because the critics (coaches) work independently of each other and is only dedicated to the success of the agent it's coaching.
+**The actor**
+
+Each agent has its own policy (called the actor) to interact with the environment. The policy only considers the states that can be observed by the agent. The actor can not access to the states that are observed by other agents.
+
+**The critic**
+
+In addition to the actor, each agent also has its own neural network (call the critic) to assist it to evaluate and improve its own policy. We can view the critic as the **personal coach** of the agent. The coach (the critic) observes everything in the envirnment: the information perceived by all agents, and the actions taken by all agents. The coach (the critic) then uses all the information it has to evaluate the action-value of the policy of the agent which it's responsible for. By assigning every agent with a unique critic (coach), we can generalize the application of MADDPG in both competitive or coorperative environment because the critics (coaches) work independently of each other and is only dedicated to the success of the agent it's coaching.
 
 For each agent, the actor and critic are implemented as 2 deep neural networks consisting of some fully connected layers. Similar to the DQN implementation, the actor has a *local* and *target* networks (and so does the critic). The target network is soft-updated at the end of each batch of training.
 
