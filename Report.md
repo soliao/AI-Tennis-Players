@@ -162,13 +162,9 @@ With the parameters above, the agent solved the task after 841 episodes, i.e., t
 
 ## Ideas for future work
 
-1. Input redundancy
-
 In the MADDPG framework, the information **observed by both players** are used to trained the critic networks. In this tennis project, the states observed by each agent include the kinematics (position and velocity) of the ball. In other words, the state vectors may have some redundant terms that are *identical* or *with the same absolute value but in opposite signs*. My current network model is equivalent to telling the critic about the location of the ball twice - one in Agent 0's coordinate and one in Agent 1's coordinate. Why not just telling the critic the ball's coordinate in a single reference coordinate?
 
 Therefore, I think the size of the state vector can be reduced in this environment, as long as the exact meaning of each component of the state vector is completely known. My future plan is to look closely at the trajectories of the states from the replays and to figure out which terms are highly correlated to each other. By reducing the redundancy, training the actor and critic networks can be more efficient.
-
-2. 
 
 ## References in this project
 1. R. Lowe et al., 2017. *Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments*\
@@ -177,5 +173,5 @@ https://arxiv.org/abs/1706.02275
 https://arxiv.org/abs/1509.02971
 3. Udacity's GitHub repository **ddpg-pendulum**\
 https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-pendulum
-4. Udacity's jupyter notebook template of **Project: Collaboration and Competition**
-
+4. Udacity's drlnd jupyter notebook template of **Project: Collaboration and Competition**
+5. Udacity's drlnd MADDPG-Lab (maddpg.py)
