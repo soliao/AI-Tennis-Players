@@ -11,7 +11,7 @@ R. Lowe et al., 2017. *Multi-Agent Actor-Critic for Mixed Cooperative-Competitiv
 
 
 ### The basics of MADDPG
-A brief introduction of the Deep Deterministic Policy Gradient (DDPG) can be found in my previous project (https://github.com/sliao-mi-luku/DeepRL-continuous-control-reachers-udacity-drlnd-p2). The Multi-Agent Deep Deterministic Policy Gradient (MADDPG) extends the basic concepts of DDPG and can be better applied in an environment where there are mutiple agents competing or cooperating with each other.
+A brief introduction of the Deep Deterministic Policy Gradient (DDPG) can be found in my previous project (https://github.com/sliao-mi-luku/DeepRL-continuous-control-reachers-udacity-drlnd-p2). The Multi-Agent Deep Deterministic Policy Gradient (MADDPG) extends the basic concepts of DDPG and can be better applied in an environment where there are mutiple agents competing or cooperating with each other. Similar to the structure of DDPG, in MADDPG each agent has an *actor* and a *critic*:
 
 **The actor**
 
